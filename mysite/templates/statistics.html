@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Estadisticas{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <div class="panel" style="padding: 50px;">
+            <h1 class="text-200">Registrarse al Boletín Informativo.</h1><br>
+            <span class="text-150">
+                Al suscribirse a nuestro boletín informativo, recibirá periódicamente correos electrónicos con información sobre noticias relevantes y próximos eventos. Nuestro objetivo es mantenerle actualizado con contenido valioso y oportuno.
+            </span><br><br>
+
+            <form action="/boletin/" method="POST">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <input type="text" class="form-control input" placeholder="Nombre" name="firstname" id="firstnameForm" oninput="this.style.boxShadow = ''"><br>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <input type="text" class="form-control input" placeholder="Apellido" name="lastname" id="lastnameForm" oninput="this.style.boxShadow = ''"><br>
+                    </div>
+                </div>
+                <input type="text" class="form-control input" placeholder="E-mail" name="email" id="emailForm" oninput="this.style.boxShadow = ''"><br>
+
+                <button class="btn button" type="button" style="width: 100%;background: #1c4ca0;color: white;" onclick="checkValues()">Registrarse</button>
+                <button type="button" style="display: none;" id="submitButton"></button>
+                <br><br>
+                <center>
+                    <span class="text-danger" id="errorMessage">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'error' %}
+                                    <i class='fal fa-times'></i> {{ message }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </span>
+                    <span class="text-success" id="successMessage">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'success' %}
+                                    <i class='fal fa-check'></i> {{ message }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </span>
+                </center>
+                <br>
+            </form>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+<script>
+    function checkValues(){
+        emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        firstname = document.getElementById('firstnameForm');
+        lastname = document.getElementById('lastnameForm');
+        email = document.getElementById('emailForm');
+
+        firstname.style.boxShadow = "";
+        lastname.style.boxShadow = "";
+        email.style.boxShadow = "";
+
+        error = document.getElementById('errorMessage');
+        success = document.getElementById('successMessage');
+        submitButton = document.getElementById('submitButton');
+
+        if(firstname.value.trim() == "" || lastname.value.trim() == "" || email.value.trim() == ""){ // Checking are not empty
+            error.innerHTML = "<i class='fal fa-times'></i> Hay Campos Vacíos";
+            success.innerHTML = "";
+
+            if(firstname.value.trim() == ""){
+                firstname.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if(lastname.value.trim() == ""){
+                lastname.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if(email.value.trim() == ""){
+                email.style.boxShadow = "3px 3px #ec4d44";
+            }
+
+        }else {
+            if(emailPattern.test(email.value) == false){
+                error.innerHTML = "<i class='fal fa-times'></i> El E-mail no es Válido";
+                success.innerHTML = "";
+                email.style.boxShadow = "3px 3px #ec4d44";
+
+            }else{
+                error.innerHTML = "";
+                success.innerHTML = "";
+                submitButton.type = "submit";
+                submitButton.click();
+            }
+
+        }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Error 404{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);color: white;min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <div class="d-none d-md-block">
+            <div class="row">
+                <div class="col-sm-12 col-md-6" style="text-align: right;">
+                    <h1 class="text-300">Error 404.</h1>
+                    <br>
+                    <span class="text-150">
+                        La página a la que intenta acceder no existe o no se encuentra disponible.
+                    </span>
+                    <br><br><br>
+                    <span class="text-150">
+                        La dirección puede que esté mal escrita o el contenido pudo haber sido movido/eliminado.
+                    </span>
+                </div>
+                <div class="col-sm-12 col-md-6" style="display: flex;align-items: center;">
+                    <i class="fas fa-search" style="font-size: 1000%;margin-left: 20%;"></i>
+                </div>
+            </div>
+            <br><br><br>
+        </div>
+
+
+
+        <div class="d-md-none d-sm-block">
+            <center>
+                <h1 class="text-300">Error 404.</h1>
+                <br>
+                <span class="text-150">
+                    La página a la que intenta acceder no existe o no se encuentra disponible.
+                </span>
+                <br><br><br>
+                <span class="text-150">
+                    La dirección puede que esté mal escrita o el contenido pudo haber sido movido/eliminado.
+                </span>
+            </center>
+            <br><br><br>
+        </div>
+    </div>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+
+{% endblock %}

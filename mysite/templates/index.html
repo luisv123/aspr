@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}Asociación Salvadoreña de Protección Radiológica.{% endblock %}
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div class="index-main-image">
+    <div class="index-main-image-effect">
+        <br><br><br>
+        <div class="container text-shadow">
+            <h1 class="text-500 d-none d-md-block">Asociación Salvadoreña<br>de Protección<br>Radiológica</h1><br><br> <!-- DESKTOP -->
+            <center>
+                <h1 class="text-300 d-sm-block d-md-none">Asociación Salvadoreña de Protección Radiológica</h1><br><br> <!-- MOBILE -->
+            </center>
+        </div>
+
+        <br><br>
+        <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path id="wavepath" d="M0,50 Q25,0 50,50 M50,50 Q75,100 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#1c4ca0"></path>
+        </svg>
+    </div>
+</div>
+<div class="index-subzone-alert">
+    <div class="container">
+        <br><br>
+        <h1 class="text-250">
+            EVENTOS QUE ORGANIZAMOS
+        </h1><br>
+
+
+    <div id="eventsCarousel" class="carousel slide cutom-carousel" data-ride="carousel">
+
+        <ul class="carousel-indicators">
+            <li data-target="#eventsCarousel" class="carousel-button active" data-slide-to="0"></li>
+            {% for i in range(eventsCarousel|length) %}
+                <li data-target="#eventsCarousel" class="carousel-button" data-slide-to="{{ i }}"></li>
+            {% endfor %}
+        </ul>
+
+        <div class="carousel-inner">
+        {% for event in eventsCarousel %}
+            <div class="carousel-item {% if eventsCarousel.index(event) == 0 %}active{% endif %}" style="min-height: 570px !important;">
+                <br><br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-4 col-sm-12">
+                        <center>
+                            <label for="carousel{{ event['event_id'] }}Event">
+                            <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 20px 10px 10px 20px;box-shadow: -20px -20px #48bced;">
+                            </label>
+                        </center>
+                        <br class="d-none d-md-block"><br class="d-none d-md-block"><br class="d-none d-md-block">
+                    </div>
+                    <div class="col-md-4 col-sm-12"><br><br>
+                        <label class="text-200" for="carousel{{ event['event_id'] }}Event">{{ event['title'] }}</label>
+                        <br><br>
+                        <form action="/evento/{{ event['event_id'] }}/" method="POST">
+                        {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
+                            <button class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</button>
+                        {% endif %}
+                        {% if event['limit_date'] < nowDate and event['active'] == 1 %}
+                            <button class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</button>
+                        {% endif %}
+                        {% if event['active'] == 2 %}
+                            <button class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</button>
+                        {% endif %}
+                        </form>
+                        <br><br><br><br>
+                    </div>
+                </div><br>
+            </div>
+        {% endfor %}
+            <div class="carousel-item" style="height: 570px !important;">
+                <center><br><br><br><br>
+                    <span class="text-300">¿Desea ver Todos los<br>Eventos que organizamos?</span>
+                    <br><br><br>
+                    <form action="/eventos/" method="POST">
+                        <button class="btn  button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</button>
+                    </form>
+                    <br><br>
+                </center><br>
+            </div>
+
+        </div>
+
+
+        <a class="carousel-control-prev" href="#eventsCarousel" data-slide="prev">
+            <i class="fas fa-chevron-left d-none d-md-inline"></i>
+        </a>
+        <a class="carousel-control-next" href="#eventsCarousel" data-slide="next">
+            <i class="fas fa-chevron-right d-none d-md-inline"></i>
+        </a>
+    </div>
+
+    </div>
+
+    <br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: relative;">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+<div class="index-subzone1">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <br><br><br>
+                <h1 class="text-200">
+                    MISIÓN Y VISIÓN
+                </h1>
+                <br><br>
+                <span>Nuestra labor primordial es fomentar el uso responsable y seguro de las radiaciones ionizantes en nuestro país, aprovechando así las bondades que la tecnología nuclear puede aportar al desarrollo de nuestra sociedad, minimizando posibles efectos adversos sobre las personas, el ambiente y la propiedad.</span>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <br><br><br>
+                <center>
+                    <img src="{{ url_for('static', filename='image2.jpg') }}" style="width: 80%;border-radius: 10px 40px 10px 40px;box-shadow: 20px -20px #ededed;">
+                </center>
+            </div>
+        </div><br><br><br><br>
+    </div>
+
+    <br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,0 L0,0 100,100 L100,100 0,100 L0,100 0,0" fill="#343a40"></path>
+    </svg>
+</div>
+<div class="index-subzone2 color-white">
+    <div class="container">
+        <br><br><br><br><br><br>
+    </div>
+</div>
+
+{% endblock %}

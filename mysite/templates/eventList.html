@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Eventos{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <div class="container">
+        <br><br><br>
+        <h1 class="text-300" style="color: white;">
+            LISTA DE EVENTOS.
+        </h1>
+        <br><br>
+        <div class="panel" style="padding: 50px;">
+        {% for event in listEvents %}
+            <div class="row">
+                <div class="col-6 col-md-2" style="margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 10px;">
+                </div>
+                <div class="col-6 col-md-7" style="display: flex;align-items: center;">
+                    <span class="text-150">{{ event['title'] }}</span>
+                </div>
+                <div class="col-12 col-md-3" style="display: flex;align-items: center;">
+                    <form action="/evento/{{ event['event_id'] }}/" method="POST">
+
+                    {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
+                        <button class="btn button d-none d-md-block" style="width: 100%;background: #48bced;color: white;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</button>
+                    {% endif %}
+                    {% if event['limit_date'] < nowDate and event['active'] == 1 %}
+                        <button class="btn button d-none d-md-block" style="width: 100%;background: #48bced;color: white;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</button>
+                    {% endif %}
+                    {% if event['active'] == 2 %}
+                        <button class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</button>
+                    {% endif %}
+
+                    </form>
+                </div>
+            </div>
+            <br><hr><br>
+        {% endfor %}
+        </div>
+    </div><br><br>
+</div>
+
+{% endblock %}

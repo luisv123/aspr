@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light main-navbar justify-content-center">
+
+    <a class="navbar-brand main-navbar-logo" href="/">
+        <img src="{{ url_for('static', filename='logo3.png') }}" alt="ASPR Logo" style="width: 80px;">
+    </a>
+
+    <button class="navbar-toggler borderless" type="button" data-toggle="collapse" data-target="#NavbarPortrait">
+        <i class="fal fa-bars"></i>
+    </button>
+
+    <div class="d-flex">
+        <div class="collapse navbar-collapse" id="NavbarPortrait">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link main-navbar-item" href="#">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link main-navbar-item" href="/eventos/">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link main-navbar-item" href="/boletin/">Boletín Informativo</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

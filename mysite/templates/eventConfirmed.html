@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Cupo Reservado{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <div class="panel" style="padding: 50px;">
+            <h1 class="text-200">Su cupo ha sido reservado exitosamente.</h1><br>
+            <span class="text-150">
+                Apreciamos sinceramente su interés y participación en el <span style="color: #2376a3;">{{ title }}</span> A medida que se acerque la fecha programada, recibirá un correo electrónico con instrucciones detalladas. Este mensaje incluirá toda la información necesaria sobre cómo se desarrollará el evento, así como los procedimientos que deberá seguir. Le recomendamos estar atento a su bandeja de entrada para asegurarse de recibir esta comunicación oportuna.
+            </span>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'newsletterRegister' %}
+                    <span class="text-150"><br><br>
+                        Cuando se presenten nuevos eventos o anuncios relevantes, recibirá un boletín informativo de interés a través de su correo electrónico.
+                    </span>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+
+{% endblock %}
