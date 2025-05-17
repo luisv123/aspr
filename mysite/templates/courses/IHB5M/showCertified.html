@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Ver certificado de {{ values['firstname'] }} {{ values['lastname'] }}{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <h1 class="text-300" style="color: white;">CURSO DE RADIOPROTECCIÓN APLICADA.</h1><br>
+        <div class="panel" style="padding: 50px;">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <span class="text-150">
+                        El Instituto Internacional Henry Becquerel, conjuntamente con la Asociación Salvadoreña de Protección Radiológica, certifican que {{ values['firstname'] }} {{ values['lastname'] }} participó en el:
+                    </span><br><br>
+                    <center class="text-200">
+                        Curso de Protección Radiológica Aplicada
+                    </center><br><br>
+                    <span class="text-150">
+                        El cual se realizó de forma virtual síncrona y tuvo una duración de 9 horas, durante 3 días, del 05 al 07 de mayo de 2025.
+                    </span><br><br>
+                    <ul style="font-size: 125%;">
+                        <li>Generalidades de los átomos y la radiación.</li>
+                        <li>Aplicaciones de las radiaciones ionizantes.</li>
+                        <li>Efectos biológicos de la radiación.</li>
+                        <li>Principios básicos de radioprotección.</li>
+                        <li>Normativa y legislación vigente.</li>
+                    </ul>
+
+                    <br><br>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <img src="{{ certifiedUrl }}" style="width: 100%;border-radius: 20px;border: 3px solid #00254a;">
+                </div>
+            </div>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+{% endblock %}

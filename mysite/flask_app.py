@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, flash, session
+from flask import Flask, render_template, url_for, request, redirect, flash, session, send_file
 import hashlib
 from datetime import datetime
 import static
@@ -29,7 +29,8 @@ listDirections = {
         'eventRegister': '/reservar/<eventTag>/',
         'eventConfirmed': '/reservar/<eventTag>/confirmacion/',
         'newsletterRegister': '/boletin/',
-        'eventList': '/eventos/'
+        'eventList': '/eventos/',
+        'getCertifieds': '/cursos/<eventTag>/certificado/'
     }
 
 
@@ -45,13 +46,21 @@ def test(password=""):
     hashObj.update(password.encode('utf-8'))
 
     if hashObj.hexdigest() == testPassword:
-        return render_template('events/ihb5m.html')
+        return render_template('events/31mayo.html')
 
-    elif testPassword:
-        return render_template('statistics.html')
+    elif password == 'statistics':
+        db = static.getDbConnection()
+        cursor = db.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM events WHERE (active = 1 OR active = 2) ORDER BY limit_date DESC")
+        listEvents = cursor.fetchall()
+
+        #return 'Nya~ >.<'
+
+        return render_template('statistics.html', listEvents)
 
     else:
-        return render_template('404.html')
+        return render_template('index.html')
 
 
    ##################################################################
@@ -63,7 +72,7 @@ def index():
     db = static.getDbConnection()
     cursor = db.cursor(dictionary=True)
 
-    cursor.execute("SELECT * FROM events WHERE (active = 1 OR active = 2) ORDER BY limit_date DESC LIMIT 5")
+    cursor.execute("SELECT * FROM events WHERE (active = 1 OR active = 2) ORDER BY limit_date DESC LIMIT 7")
     eventsCarousel = cursor.fetchall()
 
     return render_template('index.html', eventsCarousel=eventsCarousel, nowDate=datetime.now().date())
@@ -240,6 +249,77 @@ def newsletterRegister():
     return render_template('newsletterRegister.html')
 
 
+   ##################################################################
+    #   CERTIFICADOS DE CURSOS                                     #
+   ##################################################################
+
+@app.route(listDirections['getCertifieds'] + '<int:idCertified>/', methods=['GET','POST'])
+def getCertifiedsRedirect(eventTag="", idCertified=0):
+    db = static.getDbConnection()
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute(f"SELECT * FROM events_certified where event_id = '{eventTag}'")
+    result = cursor.fetchall()
+
+    if len(result) > 0 and type(idCertified) == type(1):
+        cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}'")
+        values = cursor.fetchall()
+
+        if len(values) >= idCertified:
+            return render_template(f'courses/{eventTag}/showCertified.html',
+                certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+str(idCertified)+'.png'),
+                values=values[idCertified - 1])
+
+        else:
+            return render_template('404.html')
+    else:
+        return render_template('404.html')
+
+
+
+@app.route(listDirections['getCertifieds'], methods=['GET','POST'])
+def getCertifieds(eventTag=""):
+    db = static.getDbConnection()
+    cursor = db.cursor(dictionary=True)
+
+    if request.method == 'POST':
+        if 'email' in request.form:
+            if request.form['email'] != '':
+                cursor.execute(f"SELECT * FROM events_certified where event_id = '{eventTag}' and active = 1")
+                result = cursor.fetchall()
+
+                if len(result) > 0:
+                    cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}' and email = '"+request.form['email']+"'")
+                    values = cursor.fetchall()
+
+                    if len(values) > 0:
+                        cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}'")
+                        results = cursor.fetchall()
+
+                        certifiedName = str(results.index(values[0]) + 1)
+
+                        return render_template(f'courses/{eventTag}/getCertified.html',
+                            certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+certifiedName+'.png'),
+                            values=values[0])
+
+                    else:
+                        flash('E-mail Invalido', 'error')
+                else:
+                    return render_template('404.html')
+            else:
+                flash('Hay Campos Vacíos', 'error')
+        else:
+            flash('Hay Campos Vacíos', 'error')
+
+    cursor.execute(f"SELECT * FROM events_certified where event_id = '{eventTag}' and active = 1")
+    results = cursor.fetchall()
+
+    if len(results) > 0:
+        return render_template(f'courses/{eventTag}/emailValidator.html', eventTag=eventTag)
+
+    else:
+        return render_template('404.html')
+
 
    ##################################################################
     #   PAGINA DE ERROR 404                                        #
@@ -258,3 +338,14 @@ def error404(e):
 @app.errorhandler(500)
 def error(e):
     return render_template('404.html'), 500
+
+   ##################################################################
+    #   PAGINA ODETT                                   #
+   ##################################################################
+
+@app.route('/random')
+def random():
+    return 'HELLO NAGAL ET GRETI'
+
+
+

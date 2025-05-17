@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Registrarse al Boletín Informativo{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <h1 class="text-300" style="color: white;">OBTENER CERTIFICADO.</h1><br>
+        <div class="panel" style="padding: 50px;">
+            <span class="text-150">
+                Del 5 al 7 de mayo se realizó el curso de radioprotección aplicada para el personal médico de El Salvador, en colaboración con la Asociación Salvadoreña de Protección Radiológica y el Instituto Internacional Henry Becquerel. Si participaste, ingresa tu correo electrónico para reclamar tu certificado.
+            </span><br><br>
+
+            <form action="/cursos/{{ eventTag }}/certificado/" method="POST">
+                <input type="text" class="form-control input" placeholder="E-mail" name="email" id="emailForm" oninput="this.style.boxShadow = ''"><br>
+
+                <button class="btn button" type="button" style="width: 100%;background: #1c4ca0;color: white;" onclick="checkValues()">Obtener Certificado</button>
+                <button type="button" style="display: none;" id="submitButton"></button>
+                <br><br>
+                <center>
+                    <span class="text-danger" id="errorMessage">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'error' %}
+                                    <i class='fal fa-times'></i> {{ message }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <br>
+                    </span>
+                </center>
+                <br>
+            </form>
+            <div class="embededContainer">
+                <iframe src="https://www.youtube.com/embed/IRrf6bScItE" class="embededVideo" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+<script>
+    function checkValues(){
+        emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        email = document.getElementById('emailForm');
+
+        email.style.boxShadow = "";
+
+        error = document.getElementById('errorMessage');
+        submitButton = document.getElementById('submitButton');
+
+        if(email.value.trim() == ""){ // Checking are not empty
+            error.innerHTML = "<i class='fal fa-times'></i> Hay Campos Vacíos";
+            success.innerHTML = "";
+
+            if(firstname.value.trim() == ""){
+                firstname.style.boxShadow = "3px 3px #ec4d44";
+            }
+
+        }else {
+            if(emailPattern.test(email.value) == false){
+                error.innerHTML = "<i class='fal fa-times'></i> El E-mail no es Válido";
+                email.style.boxShadow = "3px 3px #ec4d44";
+
+            }else{
+                error.innerHTML = "";
+                submitButton.type = "submit";
+                submitButton.click();
+            }
+
+        }
+    }
+</script>
+
+{% endblock %}

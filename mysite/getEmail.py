@@ -9,7 +9,7 @@ import static
 #	SELECT email FROM events_register WHERE event_id = "26ABRIL"
 #) AS resultado_combinado;"""
 
-sentence = "SELECT email FROM events_register WHERE event_id = 'IHB5M'"
+sentence = "SELECT email FROM newsletter_register"
 
 
 db = static.getDbConnection()

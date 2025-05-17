@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Descargar certificado de {{ values['firstname'] }} {{ values['lastname'] }}{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <h1 class="text-300" style="color: white;">OBTENER CERTIFICADO.</h1><br>
+        <div class="panel" style="padding: 50px;">
+            <span class="text-150">
+                ¡Felicitaciones, {{ values['firstname'] }} {{ values['lastname'] }}! Nos complace reconocer tu participación y logros en esta formación. Para obtener tu certificado, haz clic en el botón de abajo y descárgalo.
+            </span><br><br>
+
+            <a class="btn button" style="width: 100%;background: #1c4ca0;color: white;" href="{{ certifiedUrl }}">Descargar Certificado</a>
+
+            <br>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+{% endblock %}
