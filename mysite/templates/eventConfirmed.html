@@ -10,7 +10,7 @@
         <div class="panel" style="padding: 50px;">
             <h1 class="text-200">Su cupo ha sido reservado exitosamente.</h1><br>
             <span class="text-150">
-                Apreciamos sinceramente su interés y participación en el <span style="color: #2376a3;">{{ title }}</span> A medida que se acerque la fecha programada, recibirá un correo electrónico con instrucciones detalladas. Este mensaje incluirá toda la información necesaria sobre cómo se desarrollará el evento, así como los procedimientos que deberá seguir. Le recomendamos estar atento a su bandeja de entrada para asegurarse de recibir esta comunicación oportuna.
+                {{ name }}, apreciamos sinceramente su interés y participación en el <span style="color: #2376a3;">{{ title }}</span> A medida que se acerque la fecha programada, recibirá un correo electrónico con instrucciones detalladas. Este mensaje incluirá toda la información necesaria sobre cómo se desarrollará el evento, así como los procedimientos que deberá seguir. Le recomendamos estar atento a su bandeja de entrada para asegurarse de recibir esta comunicación oportuna.
             </span>
 
             {% with messages = get_flashed_messages(with_categories=true) %}

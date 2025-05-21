@@ -1,3 +1,6 @@
+import sys
+sys.path.append('mysite/')
+
 import static
 import csv
 

@@ -44,26 +44,24 @@
                     <div class="col-md-2 col-sm-12"></div>
                     <div class="col-md-4 col-sm-12">
                         <center>
-                            <label for="carousel{{ event['event_id'] }}Event">
+                            <a href="/evento/{{ event['event_id'] }}/">
                             <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 20px 10px 10px 20px;box-shadow: -20px -20px #48bced;">
-                            </label>
+                            </a>
                         </center>
                         <br class="d-none d-md-block"><br class="d-none d-md-block"><br class="d-none d-md-block">
                     </div>
                     <div class="col-md-4 col-sm-12"><br><br>
                         <label class="text-200" for="carousel{{ event['event_id'] }}Event">{{ event['title'] }}</label>
                         <br><br>
-                        <form action="/evento/{{ event['event_id'] }}/" method="POST">
-                        {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
-                            <button class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</button>
-                        {% endif %}
-                        {% if event['limit_date'] < nowDate and event['active'] == 1 %}
-                            <button class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</button>
-                        {% endif %}
-                        {% if event['active'] == 2 %}
-                            <button class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</button>
-                        {% endif %}
-                        </form>
+                    {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
+                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</a>
+                    {% endif %}
+                    {% if event['limit_date'] < nowDate and event['active'] == 1 %}
+                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</a>
+                    {% endif %}
+                    {% if event['active'] == 2 %}
+                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</a>
+                    {% endif %}
                         <br><br><br><br>
                     </div>
                 </div><br>
@@ -73,9 +71,9 @@
                 <center><br><br><br><br>
                     <span class="text-300">¿Desea ver Todos los<br>Eventos que organizamos?</span>
                     <br><br><br>
-                    <form action="/eventos/" method="POST">
-                        <button class="btn  button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</button>
-                    </form>
+
+                    <a href="/eventos/" class="btn button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</a>
+
                     <br><br>
                 </center><br>
             </div>
@@ -126,8 +124,69 @@
 </div>
 <div class="index-subzone2 color-white">
     <div class="container">
-        <br><br><br><br><br><br>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <img src="{{ url_for('static', filename='logo4.png') }}" style="max-width: 200px;">
+                <br><br>
+                <h1 class="text-150">¡Regístrese a nuestro Boletín Informativo!</h1><br>
+                <span>
+                    Recibirá periódicamente correos electrónicos con información sobre noticias relevantes y próximos eventos. Nuestro objetivo es mantenerle actualizado con contenido valioso y oportuno.
+                </span><br><br>
+                <center>
+                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="/boletin/">Registrarse</a>
+                </center>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <br>
+                <center>
+                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="javascript:void(0);" data-toggle="modal" data-target="#cpEmail"><i class="fas fa-envelope"></i> E-mail de Contacto</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #f52b46;color: white;" href="https://www.youtube.com/channel/UCQZot1gIOwz2IPzkc-TGRzw" target="_blank"><i class="fab fa-youtube"></i> Canal de YouTube</a>
+                </center>
+            </div>
+        </div>
+        <br><br>
     </div>
 </div>
+
+<!-- Modal to Copy E-mail -->
+
+<div class="modal fade" id="cpEmail">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 100px;box-shadow: 5px 5px 20px rgba(1,1,1,0.25);">
+            <div class="modal-body">
+
+                <center>
+                    <span   id="cpEmailLabel">asprelsalvador@gmail.com</span>
+                    <button id="cpEmailButton" class="btn button" style="background: #1c4ca0;color: white;margin-left: 10px;" title="Copiar E-mail de Contacto" onclick="cpEmail()"><i class="fas fa-clone"></i></button>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function cpEmail() {
+    const email = "asprelsalvador@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+        document.getElementById('cpEmailLabel').textContent = '¡E-mail Copiado!'
+        document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-check"></i>'
+    }).catch(err => {
+        document.getElementById('cpEmailLabel').textContent = 'Error al copiar el E-mail'
+        document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-times"></i>'
+    });
+
+    setTimeout(() => {
+        $('#cpEmail').modal('hide');
+
+        setTimeout(() => {
+            document.getElementById('cpEmailLabel').textContent = email
+            document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-clone"></i>'
+        }, 1000)
+    }, 3000)
+
+}
+</script>
 
 {% endblock %}

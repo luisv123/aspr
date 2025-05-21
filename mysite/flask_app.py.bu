@@ -21,15 +21,6 @@ def insertInto(cursor, table, values):
 
     cursor.execute("INSERT INTO "+table+"("+listFields+") VALUES("+listValues+")")
 
-def stringFixer(string):
-    finale = ''
-    split = string.strip().split(' ')
-    for word in split:
-        if len(word) >= 1:
-            finale += word[0].upper() + word[1:].lower() + ' '
-
-
-    return finale[:len(finale)-1] # deleting the last 'space'
 
 listDirections = {
         'test': '/test/<password>/',
@@ -133,12 +124,19 @@ def eventRegister(eventTag=""):
 
                     # Verification ended
 
-                    firstname = stringFixer(request.form['firstname'])
-                    lastname = stringFixer(request.form['lastname'])
+                    firstname = ''
+                    for word in request.form['firstname'].split(' '):
+                        firstname += word[0].upper() + word[1:].lower() + " "
+
+                    lastname = ''
+                    for word in request.form['lastname'].split(' '):
+                        lastname += word[0].upper() + word[1:].lower() + " "
+
+
 
                     registerValues = {
-                            'firstname': firstname,
-                            'lastname': lastname,
+                            'firstname': firstname.strip(),
+                            'lastname': lastname.strip(),
                             'email': request.form['email'].strip(),
                             'event_id': eventTag
                         }
@@ -158,8 +156,8 @@ def eventRegister(eventTag=""):
                         results = cursor.fetchall()
                         if results[0][0] == 0:
                             insertInto(cursor, 'newsletter_register', {
-                                    'firstname': firstname,
-                                    'lastname': lastname,
+                                    'firstname': firstname.strip(),
+                                    'lastname': lastname.strip(),
                                     'email': request.form['email'].strip()
                                 })
 
@@ -168,8 +166,6 @@ def eventRegister(eventTag=""):
                     db.commit()
 
                     session['eventRegistered'] = eventTag
-                    session['eventRegisteredName'] = firstname + ' ' + lastname
-
                     return redirect("/reservar/"+eventTag+"/confirmacion/")
 
 
@@ -200,12 +196,10 @@ def eventConfirmed(eventTag=""):
     results = cursor.fetchall()
 
     if len(results) > 0:
-        if 'eventRegistered' in session and 'eventRegisteredName' in session:
+        if 'eventRegistered' in session:
             if session['eventRegistered'] == eventTag:
-                name = session['eventRegisteredName']
                 session.pop('eventRegistered')
-                session.pop('eventRegisteredName')
-                return render_template('eventConfirmed.html', title=results[0]['title'], name=name)
+                return render_template('eventConfirmed.html', title=results[0]['title'])
 
     return render_template('error.html')
 

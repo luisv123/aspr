@@ -1,0 +1,15 @@
+
+-#  COMMIT 3
+-#  17/05/2025 - 21/05/2025
+
+- Cambiado del nombre de la tabla 'events_certified' a 'events_certificate'
+  - Cambiadas las mayorias de menciones de 'certifieds' a 'certificate'
+- Actualizada y generalizada la pagina de error
+  - Renombrada de '404.html' a 'error.html'
+- Añadida la seccion de redes y contacto
+  - Añadido 'logo4.png'
+  - Añadida invitacion de registro a la newsletter en la pagina principal
+  - Añadido E-mail de contacto
+  - Añadido canal de YouTube
+- Cambiados multiples <button> por <a>
+- Anadida la funcion 'stringFixer'
