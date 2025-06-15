@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3" style="color: white;"></div>
+            <div class="col-sm-12 col-md-6">
+                <div class="panel" style="padding: 50px;">
+                    <center><br><br><br>
+                        <h1 class="text-300">INICIAR SESIÓN</h1>
+                    </center><br><br><br>
+
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <input type="text" class="form-control input" placeholder="E-mail" name="email" id="emailForm" oninput="this.style.boxShadow = ''"><br>
+                        <input type="password" class="form-control input" placeholder="Contraseña" name="password" id="passwordForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <button class="btn button" type="button" style="width: 100%;background: #1c4ca0;color: white;" onclick="checkValues()">Iniciar Sesión</button>
+                        <button type="button" style="display: none;" id="submitButton"></button>
+                        <br><br>
+                        <center>
+                            <span class="text-danger" id="errorMessage"><br>
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                        {% if category == 'error' %}
+                                            <i class='fal fa-times'></i> {{ message }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </span>
+                        </center>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+<script>
+    function checkValues(){
+        emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        email = document.getElementById('emailForm');
+        password = document.getElementById('passwordForm');
+
+        email.style.boxShadow = "";
+        password.style.boxShadow = "";
+
+        error = document.getElementById('errorMessage');
+        submitButton = document.getElementById('submitButton');
+
+        if(email.value.trim() == "" || password.value.trim() == ""){ // Checking are not empty
+            error.innerHTML = "<i class='fal fa-times'></i> Hay Campos Vacíos";
+
+            if(email.value.trim() == ""){
+                email.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if(password.value.trim() == ""){
+                password.style.boxShadow = "3px 3px #ec4d44";
+            }
+
+        }else {
+            if(emailPattern.test(email.value) == false){
+                error.innerHTML = "<i class='fal fa-times'></i> El E-mail no es Válido";
+                email.style.boxShadow = "3px 3px #ec4d44";
+
+            }else{
+                error.innerHTML = "<br>";
+                submitButton.type = "submit";
+                submitButton.click();
+            }
+
+        }
+    }
+</script>
+
+{% endblock %}

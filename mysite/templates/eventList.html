@@ -21,7 +21,7 @@
                     <span class="text-150">{{ event['title'] }}</span>
                 </div>
                 <div class="col-12 col-md-3" style="display: flex;align-items: center;">
-                    <form action="/evento/{{ event['event_id'] }}/" method="POST">
+                    <form action="{{ url_for('eventForm', eventTag=event['event_id']) }}" method="POST">
 
                     {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
                         <button class="btn button d-none d-md-block" style="width: 100%;background: #48bced;color: white;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</button>

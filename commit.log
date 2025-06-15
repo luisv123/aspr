@@ -13,3 +13,19 @@
   - Añadido canal de YouTube
 - Cambiados multiples <button> por <a>
 - Anadida la funcion 'stringFixer'
+
+-#  COMMIT 4
+-#  23/05/2025 - 15/06/2025
+
+- Cambiado 'logo.png'
+- Añadido sistema de login
+  - Añadida la plantilla 'login.html'
+  - Añadida la plantilla 'navbar2.html'
+  - Añadida la plantilla 'dashboard.html'
+  - Añadida la ruta '/sesion/iniciar'
+  - Añadida la ruta '/sesion/cerrar'
+  - Añadida la tabla 'users'
+  - Migrado el sistema de cifrado de 'hashlib' a 'werkzeug.security'
+- Cambiadas las direcciones especificas por url_for
+- Uso de datos de la db en los formularios de registro a eventos
+- Actualizado 'getEmail.py'

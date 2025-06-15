@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light main-navbar justify-content-center">
 
-    <a class="navbar-brand main-navbar-logo" href="/">
+    <a class="navbar-brand main-navbar-logo" href="{{ url_for('index') }}">
         <img src="{{ url_for('static', filename='logo3.png') }}" alt="ASPR Logo" style="width: 80px;">
     </a>
 
@@ -15,10 +15,10 @@
                     <a class="nav-link main-navbar-item" href="#">Noticias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link main-navbar-item" href="/eventos/">Eventos</a>
+                    <a class="nav-link main-navbar-item" href="{{ url_for('eventList') }}">Eventos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link main-navbar-item" href="/boletin/">Boletín Informativo</a>
+                    <a class="nav-link main-navbar-item" href="{{ url_for('newsletterRegister') }}">Boletín Informativo</a>
                 </li>
             </ul>
         </div>

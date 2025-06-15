@@ -44,7 +44,7 @@
                     <div class="col-md-2 col-sm-12"></div>
                     <div class="col-md-4 col-sm-12">
                         <center>
-                            <a href="/evento/{{ event['event_id'] }}/">
+                            <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}">
                             <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 20px 10px 10px 20px;box-shadow: -20px -20px #48bced;">
                             </a>
                         </center>
@@ -54,13 +54,13 @@
                         <label class="text-200" for="carousel{{ event['event_id'] }}Event">{{ event['title'] }}</label>
                         <br><br>
                     {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
-                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</a>
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</a>
                     {% endif %}
                     {% if event['limit_date'] < nowDate and event['active'] == 1 %}
-                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</a>
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</a>
                     {% endif %}
                     {% if event['active'] == 2 %}
-                        <a href="/evento/{{ event['event_id'] }}/" class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</a>
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</a>
                     {% endif %}
                         <br><br><br><br>
                     </div>
@@ -72,7 +72,7 @@
                     <span class="text-300">¿Desea ver Todos los<br>Eventos que organizamos?</span>
                     <br><br><br>
 
-                    <a href="/eventos/" class="btn button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</a>
+                    <a href="{{ url_for('eventList') }}" class="btn button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</a>
 
                     <br><br>
                 </center><br>
@@ -133,7 +133,7 @@
                     Recibirá periódicamente correos electrónicos con información sobre noticias relevantes y próximos eventos. Nuestro objetivo es mantenerle actualizado con contenido valioso y oportuno.
                 </span><br><br>
                 <center>
-                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="/boletin/">Registrarse</a>
+                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="{{ url_for('newsletterRegister') }}">Registrarse</a>
                 </center>
             </div>
             <div class="col-sm-12 col-md-6">
@@ -142,6 +142,8 @@
                     <a class="btn button" style="width: 75%;background: white;color: gray;" href="javascript:void(0);" data-toggle="modal" data-target="#cpEmail"><i class="fas fa-envelope"></i> E-mail de Contacto</a>
                     <br><br>
                     <a class="btn button" style="width: 75%;background: #f52b46;color: white;" href="https://www.youtube.com/channel/UCQZot1gIOwz2IPzkc-TGRzw" target="_blank"><i class="fab fa-youtube"></i> Canal de YouTube</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #48b964;color: white;" href="https://whatsapp.com/channel/0029Vb65sbA1dAvzZBsfUZ2g" target="_blank"><i class="fab fa-whatsapp"></i> Canal de WhatsApp</a>
                 </center>
             </div>
         </div>
@@ -187,6 +189,8 @@ function cpEmail() {
     }, 3000)
 
 }
+
+
 </script>
 
 {% endblock %}

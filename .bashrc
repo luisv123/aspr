@@ -17,6 +17,7 @@ RESET_COLOR="\[\033[0;0m\]"
 PS1="$RESET_COLOR\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $RESET_COLOR"
 
 alias databaseReset='mysql -u aspr -h aspr.mysql.pythonanywhere-services.com -p 'aspr$aspr' < database.sql'
-
+alias ll='ls -la'
+alias py3='python3'
 # Load virtualenvwrapper
 source virtualenvwrapper.sh &> /dev/null

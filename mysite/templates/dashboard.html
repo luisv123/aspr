@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Asociación Salvadoreña de Protección Radiológica.{% endblock %}
+{% block body_style %}background: #f8f9fa;{% endblock %}
+{% block content %}
+
+{% include 'navbar2.html' %}
+
+<div class="container"><br><br>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel" style="box-shadow: 2px 2px rgba(1,1,1,0.1);height: 100%;padding: 30px;">
+                <h1 class="text-250">{{ session['session_firstname'] }} {{ session['session_lastname'] }}.</h1>
+                {{ session['session_rank'] }}
+                {{ session['session_gender'] }}
+                {% if session['session_rank'] == 1 %}
+                    {% if session['session_gender'] == 'm' or session['session_gender'] == 'o' %}
+                    <span>Administrador.</span>
+                    {% endif %}
+                    {% if session['session_gender'] == 'f' %}
+                    <span>Administradora.</span>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="panel" style="box-shadow: 2px 2px rgba(1,1,1,0.1);height: 100%;padding: 30px;">
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -4,8 +4,8 @@ sys.path.append('mysite/')
 import static
 import csv
 
-sentence    = "SELECT firstname, lastname, email FROM events_register WHERE event_id = 'IHB5M'"
-outputFile  = 'output.csv'
+sentence    = "select email from events_register where event_id ='14JUNIO';"
+outputFile  = '14JUNIO.csv'
 
 db = static.getDbConnection()
 cursor = db.cursor()

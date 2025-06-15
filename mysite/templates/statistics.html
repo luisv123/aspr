@@ -8,15 +8,72 @@
     <br><br><br>
     <div class="container">
         <div class="panel" style="padding: 50px;">
-            <h1 class="text-200">Lista de Eventos</h1>
+            <h1 class="text-200">Lista de Registrados</h1><br>
+            <table class="table table-striped">
             {% for event in listEvents %}
-            {{ event['title'] }}
+                <tr>
+                    <td>
+                        {{ event['title'] }}
+                        {% if cantRegisters[event['event_id']] == 1 %}
+                        (1 Registro)
+                        {% endif %}
+                        {% if cantRegisters[event['event_id']] != 1 %}
+                        ({{ cantRegisters[event['event_id']] }} Registros)
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn" style="width: 100%;background: #1c4ca0;color: white;" data-toggle="modal" data-target="#registers{{ event['event_id'] }}">
+                            <i class="fal fa-bars"></i>
+                        </button>
+                    </td>
+                </tr>
             {% endfor %}
+            </table>
         </div>
     </div><br><br><br><br><br>
     <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
     </svg>
 </div>
+
+{% for event in listEvents %}
+
+<div class="modal fade" id="registers{{ event['event_id'] }}">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="border-radius: 20px;box-shadow: 5px 5px 20px rgba(1,1,1,0.25);">
+            <div class="modal-body" style="overflow: scroll;max-height: 600px;">
+                <span class="text-150">{{ event['title'] }}</span>
+                <button type="button" class="close" data-dismiss="modal"><i class="fal fa-times"></i></button>
+
+                <br><br>
+
+                <table class="table table-striped">
+                    <tr>
+                        {% for tag in fieldsShow %}
+                            <th>
+                                {{ fieldsShow[tag] }}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                    {% for register in listRegisters %}
+                    {% if register['event_id'] == event['event_id'] %}
+                        <tr>
+                            {% for tag in fieldsShow %}
+                                <td>
+                                {% if register[tag] != None %}
+                                    {{ register[tag] }}
+                                {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
 
 {% endblock %}

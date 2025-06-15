@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Reservar Cupo para el Evento{% endblock %}
+{% block title %}Seminario Internacional sobre "Control de Calidad en Resonancia Magnética"{% endblock %}
 {% block body_style %}background: linear-gradient(to right, #1c4ca0, #48bced);{% endblock %}
 
 {% block content %}
@@ -7,157 +7,19 @@
 {% include 'navbar1.html' %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-6" style="color: white;">
-            <br><br><br>
-            <h1 class="text-300">
-                FORMULARIO DE REGISTRO — EL ROL DEL MÉDICO ESPECIALISTA EN LA RADIOTERAPIA.
-            </h1>
-            <br>
-            <span class="text-150">
-                El seminario internacional titulado: <b>"Protección Radiológica y el Rol del Médico Especialista en la Radioterapia"</b> es organizado por la Asociación Salvadoreña de Protección Radiológica (ASPR) y contará con la participación del <b>Dr. Jorge Carmona</b>. Este evento se llevará a cabo de manera virtual el próximo 31 de Mayo de 2025, a las <b>10:00 a.m. (hora de El Salvador)</b>. La inscripción es gratuita y el cupo es limitado.
-            </span>
-            <br><br>
-            <img src="{{ url_for('static', filename='events/31mayo.jpg') }}" style="width: 90%;border-radius: 20px;">
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <br><br><br>
-            <div class="panel" style="min-height: 500px;height: calc(100% - 72px);overflow-y: scroll;overflow-x: hidden;position: relative;">
-                <div>
-                    <center><br>
-                        <h1 class="text-300">REGISTRO</h1>
-                    </center><br><br>
-                    <form action="/reservar/31MAYO/" method="POST">
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <input type="text" class="form-control input" placeholder="Nombre" name="firstname" id="firstnameForm" oninput="this.style.boxShadow = ''"><br>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <input type="text" class="form-control input" placeholder="Apellido" name="lastname" id="lastnameForm" oninput="this.style.boxShadow = ''"><br>
-                            </div>
-                        </div>
-                        <input type="text" class="form-control input" placeholder="E-mail" name="email" id="emailForm" oninput="this.style.boxShadow = ''"><br>
-                        <select name="title" class="form-control input" style="padding: 0px;padding-left: 20px;" id="titleForm" oninput="this.style.boxShadow = ''">
-                            <option value="">Título</option>
-                            <option value="tecnico">Técnico</option>
-                            <option value="licenciado">Licenciado</option>
-                            <option value="especialista">Especialista</option>
-                            <option value="magister">Magíster</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="otro">Otro</option>
-                        </select><br>
-
-                        <input type="text" class="form-control input" placeholder="Profesión" name="profession" id="professionForm" oninput="this.style.boxShadow = ''"><br>
-                        <input type="text" class="form-control input" placeholder="Organización donde Labora" name="org" id="orgForm" oninput="this.style.boxShadow = ''"><br>
-
-                        <div class="row">
-                            <div class="col-12 col-md-5">
-                                <select name="country" class="form-control input" style="padding: 0px;padding-left: 20px;" id="countryForm" oninput="this.style.boxShadow = ''">
-                                    {% include 'countrys.html' %}
-                                </select><br>
-                            </div>
-                            <div class="col-12 col-md-7">
-                                <input type="text" class="form-control input" placeholder="Número de Teléfono" name="tlf" id="tlfForm" oninput="this.style.boxShadow = ''"><br>
-                            </div>
-                        </div>
-
-                        <textarea class="form-control input" placeholder="Razones o Interéses hacia el Seminario" name="motives" style="min-height: 150px !important;max-height: 150px;"></textarea><br>
-
-                        <input type="checkbox" class="form-check-input" name="newsletter_confirm" style="margin-left: 20px;transform: scale(2);">
-                        <span style="margin-left: 50px;">Notificarme de Próximos Eventos</span><br><br>
-
-                        <input type="hidden" name="fields" value="title,country,tlf,profession,org,motives">
-
-                        <button class="btn button" type="button" style="width: 100%;background: #1c4ca0;color: white;" onclick="checkValues()">Reservar Cupo</button>
-                        <button type="button" style="display: none;" id="submitButton"></button>
-                        <br><br>
-                        <center>
-                            <span class="text-danger" id="errorMessage">
-                                {% with messages = get_flashed_messages(with_categories=true) %}
-                                {% if messages %}
-                                    {% for category, message in messages %}
-                                        {% if category == 'error' %}
-                                            <i class='fal fa-times'></i> {{ message }}
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                                {% endwith %}
-                            </span>
-                        </center>
-                        <br>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <br><br><br>
+    <h1 class="text-300" style="color: white;">
+        SEMINARIO INTERNACIONAL SOBRE "EL ROL DEL MÉDICO ESPECIALISTA EN LA RADIOTERAPIA"
+    </h1>
     <br><br>
+    <div class="panel" style="padding: 50px;">
+        <span class="text-150">El seminario se llevó a cabo el 31 de mayo de 2025, bajo la dirección de el Dr. Jorge Carmona. Este evento fue completamente en línea y ofrecido de manera gratuita. Para participar y recibir notificaciones sobre futuros eventos, lo invitamos a <a href="/boletin/">suscribirse a nuestro boletín informativo</a>, donde recibirá actualizaciones sobre los próximos seminarios que organizaremos.</span>
+        <br><br><br>
+        <div class="embededContainer">
+            <iframe src="https://www.youtube.com/embed/t06VOQYGKlo" class="embededVideo" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div><br>
 </div>
 
-
-<script>
-    function checkValues(){
-        emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        firstname = document.getElementById('firstnameForm');
-        lastname = document.getElementById('lastnameForm');
-        email = document.getElementById('emailForm');
-        title = document.getElementById('titleForm');
-        country = document.getElementById('countryForm');
-        tlf = document.getElementById('tlfForm');
-        org = document.getElementById('orgForm');
-        profession = document.getElementById('professionForm');
-
-        firstname.style.boxShadow = "";
-        lastname.style.boxShadow = "";
-        email.style.boxShadow = "";
-        title.style.boxShadow = "";
-        country.style.boxShadow = "";
-        tlf.style.boxShadow = "";
-
-        error = document.getElementById('errorMessage');
-        submitButton = document.getElementById('submitButton');
-
-        if(firstname.value.trim() == "" || lastname.value.trim() == "" || email.value.trim() == "" || title.value.trim() == "" || country.value.trim() == "" || tlf.value.trim() == "" || org.value.trim() == "" || profession.value.trim() == ""){ // Checking are not empty
-            error.innerHTML = "<i class='fal fa-times'></i> Hay Campos Vacíos";
-
-            if(firstname.value.trim() == ""){
-                firstname.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(lastname.value.trim() == ""){
-                lastname.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(email.value.trim() == ""){
-                email.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(title.value.trim() == ""){
-                title.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(country.value.trim() == ""){
-                country.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(tlf.value.trim() == ""){
-                tlf.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(org.value.trim() == ""){
-                org.style.boxShadow = "3px 3px #ec4d44";
-            }
-            if(profession.value.trim() == ""){
-                profession.style.boxShadow = "3px 3px #ec4d44";
-            }
-
-        }else {
-            if(emailPattern.test(email.value) == false){
-                error.innerHTML = "<i class='fal fa-times'></i> El E-mail no es Válido";
-                email.style.boxShadow = "3px 3px #ec4d44";
-
-            }else{
-                error.innerHTML = "";
-                submitButton.type = "submit";
-                submitButton.click();
-            }
-
-        }
-    }
-</script>
 
 {% endblock %}
