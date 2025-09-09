@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Ver certificado de {{ values['firstname'] }} {{ values['lastname'] }}{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div style="background: linear-gradient(to right, #1c4ca0, #48bced);min-height: 60vh;position: relative;">
+    <br><br><br>
+    <div class="container">
+        <h1 class="text-300" style="color: white;">CURSO DE RADIOPROTECCIÓN APLICADA.</h1><br>
+        <div class="panel" style="padding: 50px;">
+            <div class="row">
+                <div class="col-12">
+                    <span class="text-150">
+                        La Asociación Salvadoreña de Protección Radiológica, certifican que {{ values['firstname'] }} {{ values['lastname'] }} participó en el:
+                    </span><br><br>
+                    <center class="text-200">
+                        Curso de Actualización en Protección Radiológica Aplicada
+                    </center><br><br>
+                    <span class="text-150">
+                        El cual se realizó de forma virtual síncrona y tuvo una duración de 4 horas, el 07 de junio de 2025.
+                    </span><br><br>
+                    <ul style="font-size: 125%;">
+                        <li>TOE.</li>
+                        <li>Práctica tipo 2.</li>
+                        <li>Diagnóstico Médico.</li>
+                    </ul>
+
+                    <br><br>
+                </div>
+                <div class="col-12">
+                    <img src="{{ certifiedUrl }}" style="width: 100%;border-radius: 20px;border: 3px solid #13297e;">
+                </div>
+            </div>
+        </div>
+    </div><br><br><br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+
+{% endblock %}

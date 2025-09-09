@@ -10,34 +10,23 @@
         <h1 class="text-300" style="color: white;">
             LISTA DE EVENTOS.
         </h1>
-        <br><br>
-        <div class="panel" style="padding: 50px;">
-        {% for event in listEvents %}
-            <div class="row">
-                <div class="col-6 col-md-2" style="margin-bottom: 20px;">
-                    <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 10px;">
+        <br>
+        <div class="panel" style="padding: 50px;"><br>
+        <div class="row">
+            {% for event in listEvents %}
+                <div class="col-sm-12 col-md-4">
+                    <center>
+                        <div class="eventListItem">
+                            <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" style="text-decoration: none;display: inline-block;">
+                                <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" class="eventListItemImg">
+                                <div class="text-150 eventListItemText">{{ event["title"] }}</div>
+                            </a>
+                        </div>
+                    </center>
+                    <br><br><br>
                 </div>
-                <div class="col-6 col-md-7" style="display: flex;align-items: center;">
-                    <span class="text-150">{{ event['title'] }}</span>
-                </div>
-                <div class="col-12 col-md-3" style="display: flex;align-items: center;">
-                    <form action="{{ url_for('eventForm', eventTag=event['event_id']) }}" method="POST">
-
-                    {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
-                        <button class="btn button d-none d-md-block" style="width: 100%;background: #48bced;color: white;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</button>
-                    {% endif %}
-                    {% if event['limit_date'] < nowDate and event['active'] == 1 %}
-                        <button class="btn button d-none d-md-block" style="width: 100%;background: #48bced;color: white;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</button>
-                    {% endif %}
-                    {% if event['active'] == 2 %}
-                        <button class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</button>
-                    {% endif %}
-
-                    </form>
-                </div>
-            </div>
-            <br><hr><br>
-        {% endfor %}
+                <br><br>
+            {% endfor %}
         </div>
     </div><br><br>
 </div>

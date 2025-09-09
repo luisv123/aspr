@@ -11,10 +11,10 @@
 # hlsearch on (H) or off (h):
 ~h
 # Command Line History (newest to oldest):
+:wq
+|2,0,1754703480,,"wq"
 :q
 |2,0,1749935976,,"q"
-:wq
-|2,0,1749853448,,"wq"
 :w
 |2,0,1749149403,,"w"
 :WQ
@@ -36,34 +36,48 @@
 |3,1,1,1,1,0,1745694607,"ddselect ROW_NUMBER() OVER (ORDER BY event_id) AS NUMERO , CONCAT(firstname , ' ', lastname ) AS NOMBRE, profession , country  AS PAIS from events_register where event_id='10'"
 
 # File marks:
-'0  1  0  ~/mysite/.env
-|4,48,1,0,1749935976,"~/mysite/.env"
-'1  38  101  ~/getEmail.py
-|4,49,38,101,1749853448,"~/getEmail.py"
-'2  21  5  ~/.bashrc
-|4,50,21,5,1749149553,"~/.bashrc"
-'3  21  11  ~/.bashrc
-|4,51,21,11,1749149437,"~/.bashrc"
-'4  19  63  ~/mysite/consultas.sql
-|4,52,19,63,1745701367,"~/mysite/consultas.sql"
-'5  15  69  ~/mysite/consultas.sql
-|4,53,15,69,1745694763,"~/mysite/consultas.sql"
+'0  17  0  ~/mysite/static/certifieds/7JUNIOTOE/nigga.sh
+|4,48,17,0,1754703480,"~/mysite/static/certifieds/7JUNIOTOE/nigga.sh"
+'1  1  0  ~/mysite/.env
+|4,49,1,0,1749935976,"~/mysite/.env"
+'2  38  101  ~/getEmail.py
+|4,50,38,101,1749853448,"~/getEmail.py"
+'3  21  5  ~/.bashrc
+|4,51,21,5,1749149553,"~/.bashrc"
+'4  21  11  ~/.bashrc
+|4,52,21,11,1749149437,"~/.bashrc"
+'5  19  63  ~/mysite/consultas.sql
+|4,53,19,63,1745701367,"~/mysite/consultas.sql"
 '6  15  69  ~/mysite/consultas.sql
 |4,54,15,69,1745694763,"~/mysite/consultas.sql"
-'7  12  0  ~/mysite/consultas.sql
-|4,55,12,0,1745694585,"~/mysite/consultas.sql"
+'7  15  69  ~/mysite/consultas.sql
+|4,55,15,69,1745694763,"~/mysite/consultas.sql"
 '8  12  0  ~/mysite/consultas.sql
 |4,56,12,0,1745694585,"~/mysite/consultas.sql"
 '9  12  0  ~/mysite/consultas.sql
 |4,57,12,0,1745694585,"~/mysite/consultas.sql"
 
 # Jumplist (newest first):
+-'  17  0  ~/mysite/static/certifieds/7JUNIOTOE/nigga.sh
+|4,39,17,0,1754703480,"~/mysite/static/certifieds/7JUNIOTOE/nigga.sh"
+-'  1  0  ~/mysite/static/certifieds/7JUNIOTOE/nigga.sh
+|4,39,1,0,1754703476,"~/mysite/static/certifieds/7JUNIOTOE/nigga.sh"
+-'  1  0  ~/mysite/.env
+|4,39,1,0,1749935976,"~/mysite/.env"
 -'  1  0  ~/mysite/.env
 |4,39,1,0,1749935976,"~/mysite/.env"
 -'  38  101  ~/getEmail.py
 |4,39,38,101,1749853448,"~/getEmail.py"
 -'  38  101  ~/getEmail.py
 |4,39,38,101,1749853448,"~/getEmail.py"
+-'  38  101  ~/getEmail.py
+|4,39,38,101,1749853448,"~/getEmail.py"
+-'  38  101  ~/getEmail.py
+|4,39,38,101,1749853448,"~/getEmail.py"
+-'  1  0  ~/getEmail.py
+|4,39,1,0,1749853125,"~/getEmail.py"
+-'  1  0  ~/getEmail.py
+|4,39,1,0,1749853125,"~/getEmail.py"
 -'  1  0  ~/getEmail.py
 |4,39,1,0,1749853125,"~/getEmail.py"
 -'  1  0  ~/getEmail.py
@@ -76,6 +90,22 @@
 |4,39,21,5,1749149553,"~/.bashrc"
 -'  21  5  ~/.bashrc
 |4,39,21,5,1749149553,"~/.bashrc"
+-'  21  5  ~/.bashrc
+|4,39,21,5,1749149553,"~/.bashrc"
+-'  21  5  ~/.bashrc
+|4,39,21,5,1749149553,"~/.bashrc"
+-'  21  5  ~/.bashrc
+|4,39,21,5,1749149553,"~/.bashrc"
+-'  21  5  ~/.bashrc
+|4,39,21,5,1749149553,"~/.bashrc"
+-'  21  11  ~/.bashrc
+|4,39,21,11,1749149437,"~/.bashrc"
+-'  21  11  ~/.bashrc
+|4,39,21,11,1749149437,"~/.bashrc"
+-'  21  11  ~/.bashrc
+|4,39,21,11,1749149437,"~/.bashrc"
+-'  21  11  ~/.bashrc
+|4,39,21,11,1749149437,"~/.bashrc"
 -'  21  11  ~/.bashrc
 |4,39,21,11,1749149437,"~/.bashrc"
 -'  21  11  ~/.bashrc
@@ -100,6 +130,38 @@
 |4,39,22,12,1749149370,"~/.bashrc"
 -'  22  12  ~/.bashrc
 |4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  22  12  ~/.bashrc
+|4,39,22,12,1749149370,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
+-'  19  105  ~/.bashrc
+|4,39,19,105,1749149309,"~/.bashrc"
 -'  19  105  ~/.bashrc
 |4,39,19,105,1749149309,"~/.bashrc"
 -'  19  105  ~/.bashrc
@@ -148,6 +210,38 @@
 |4,39,19,63,1745701367,"~/mysite/consultas.sql"
 -'  19  63  ~/mysite/consultas.sql
 |4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
+-'  19  63  ~/mysite/consultas.sql
+|4,39,19,63,1745701367,"~/mysite/consultas.sql"
 -'  15  69  ~/mysite/consultas.sql
 |4,39,15,69,1745701221,"~/mysite/consultas.sql"
 -'  15  69  ~/mysite/consultas.sql
@@ -164,102 +258,15 @@
 |4,39,15,69,1745701221,"~/mysite/consultas.sql"
 -'  15  69  ~/mysite/consultas.sql
 |4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745701221,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  15  69  ~/mysite/consultas.sql
-|4,39,15,69,1745694763,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
--'  16  0  ~/mysite/consultas.sql
-|4,39,16,0,1745694627,"~/mysite/consultas.sql"
 
 # History of marks within files (newest to oldest):
+
+> ~/mysite/static/certifieds/7JUNIOTOE/nigga.sh
+	*	1754703479	0
+	"	17	0
+	^	17	0
+	.	16	4
+	+	16	4
 
 > ~/mysite/.env
 	*	1749935973	0

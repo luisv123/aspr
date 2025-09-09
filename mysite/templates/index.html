@@ -119,11 +119,38 @@
 
     <br><br>
     <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <path id="wavepath" d="M0,0 L0,0 100,100 L100,100 0,100 L0,100 0,0" fill="#343a40"></path>
+        <path id="wavepath" d="M0,0 Q50,100 100,0 M100,00 L100,0 100,100 L100,100 0,100 L0,100 0,0" fill="#91fff0"></path>
     </svg>
 </div>
-<div class="index-subzone2 color-white">
+<div class="index-subzone2">
+    <div class="index-subzone2-gradient"></div>
     <div class="container">
+        <center>
+            <h1 class="text-200" style="position: relative;">
+                ¿QUIÉNES SOMOS?
+            </h1>
+            <br><br>
+            <div class="embededContainer" style="box-shadow: 0px 0px #6febff;border-radius: 20px;width: 80%;padding-bottom: 45%;">
+                <iframe src="https://www.youtube.com/embed/3oF90uZsuAY" style="background: #6febff !important;" class="embededVideo" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </center>
+        <br>
+        <br>
+        <br>
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+    </div>
+
+    <br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,100 Q50,0 100,100 L100,100 0,100 L0,100 0,0" fill="#343a40"></path>
+    </svg>
+</div>
+<div class="index-subzone3 color-white">
+    <div class="container">
+        <br><br>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <img src="{{ url_for('static', filename='logo4.png') }}" style="max-width: 200px;">
@@ -131,7 +158,7 @@
                 <h1 class="text-150">¡Regístrese a nuestro Boletín Informativo!</h1><br>
                 <span>
                     Recibirá periódicamente correos electrónicos con información sobre noticias relevantes y próximos eventos. Nuestro objetivo es mantenerle actualizado con contenido valioso y oportuno.
-                </span><br><br>
+                </span><br><br><br>
                 <center>
                     <a class="btn button" style="width: 75%;background: white;color: gray;" href="{{ url_for('newsletterRegister') }}">Registrarse</a>
                 </center>
@@ -144,11 +171,18 @@
                     <a class="btn button" style="width: 75%;background: #f52b46;color: white;" href="https://www.youtube.com/channel/UCQZot1gIOwz2IPzkc-TGRzw" target="_blank"><i class="fab fa-youtube"></i> Canal de YouTube</a>
                     <br><br>
                     <a class="btn button" style="width: 75%;background: #48b964;color: white;" href="https://whatsapp.com/channel/0029Vb65sbA1dAvzZBsfUZ2g" target="_blank"><i class="fab fa-whatsapp"></i> Canal de WhatsApp</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #194ba0;color: white;" href="https://www.facebook.com/people/Asociaci%C3%B3n-Salvadore%C3%B1a-de-Protecci%C3%B3n-Radiol%C3%B3gica/61575758426471/" target="_blank"><i class="fab fa-facebook"></i> Página de Facebook</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);color: white;" href="https://www.instagram.com/asprelsalvador/" target="_blank"><i class="fab fa-instagram"></i> Cuenta de Instagram</a>
                 </center>
             </div>
         </div>
         <br><br>
     </div>
+    <marquee behavior="scroll" direction="left" scrollamount="5" scrolldelay="0" class="text-125">
+        ¡Síguenos en nuestras redes sociales para mantenerte conectado y no perderte ningún evento, curso o novedad!
+    </marquee><br><br>
 </div>
 
 <!-- Modal to Copy E-mail -->

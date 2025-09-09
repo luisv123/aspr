@@ -29,3 +29,10 @@
 - Cambiadas las direcciones especificas por url_for
 - Uso de datos de la db en los formularios de registro a eventos
 - Actualizado 'getEmail.py'
+
+-# COMMIT 5
+-# 02/07/2025 - 09/09/2025
+
+- Añadido un link a la pagina de facebook desde el footer
+- Actualizado en general la página inicial
+- Rediseñada la página de seleccion de evento

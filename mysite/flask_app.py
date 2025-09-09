@@ -1,7 +1,8 @@
-from flask import Flask, render_template, url_for, request, redirect, flash, session, send_file
+from flask import Flask, render_template, url_for, request, redirect, flash, session, send_file, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import static
+import os
 
 app = Flask(__name__)
 app.secret_key = '88653085b29d21c81db94ea79056d11668522a07082844f400842cb5956ab3fc'
@@ -48,6 +49,7 @@ def gapBetweenTimes(time1, time2):
 
 listDirections = {
         'test': '/test/<password>/',
+        'shortener': '/s/<key>/',
         'index': '/',
         'login': '/sesion/iniciar/',
         'logout': '/sesion/cerrar/',
@@ -56,7 +58,8 @@ listDirections = {
         'eventConfirmed': '/reservar/<eventTag>/confirmacion/',
         'newsletterRegister': '/boletin/',
         'eventList': '/eventos/',
-        'getCertificate': '/cursos/<eventTag>/certificado/',
+        'getCertificateOLD': '/cursos/<eventTag>/certificado/',
+        'getCertificate': '/cursos/<eventTag>/',
         'printXlsx': '/reports'
     }
 
@@ -105,9 +108,42 @@ def test(password=""):
 
 
    ##################################################################
-    #   MAIN PAGE                                                  #
+    #   SHORTENER                                                  #
    ##################################################################
 
+
+@app.route(listDirections['shortener'], methods=['GET','POST'])
+def shortener(key=""):
+    db = static.getDbConnection()
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute(f"SELECT * FROM links_key WHERE link_id = '{key}'")
+    result = cursor.fetchall()
+
+    if len(result) > 0:
+        return result[0]['link']
+        return redirect(result['link'])
+
+    else:
+        return 'get out'
+        return render_template('error.html')
+
+
+@app.route("/5JULIO/link/", methods=['GET','POST'])
+def newsletter5july():
+    db = static.getDbConnection()
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute("INSERT INTO newsletter_part(event_id) VALUES('5JULIO')")
+    db.commit()
+
+    return redirect('https://meet.google.com/ifq-ecga-jmx')
+
+
+
+   ##################################################################
+    #   MAIN PAGE                                                  #
+   ##################################################################
 
 
 @app.route(listDirections['index'], methods=['GET','POST'])
@@ -363,8 +399,115 @@ def newsletterRegister():
     #   CERTIFICADOS DE CURSOS                                     #
    ##################################################################
 
+@app.route(listDirections['getCertificateOLD'] + '<int:idCertificate>/', methods=['GET','POST'])
+def showCertificateOLD(eventTag="", idCertificate=0):
+    mapping = {
+        '7JUNIOTOE/2': '117',
+        '7JUNIOTOE/3': '118',
+        '7JUNIOTOE/7': '122',
+        '7JUNIOTOE/9': '124',
+        '7JUNIOTOE/10': '125',
+        '7JUNIOTOE/13': '129',
+        '7JUNIOTOE/14': '130',
+        '7JUNIOTOE/15': '132',
+        '7JUNIOTOE/21': '140',
+        '7JUNIOTOE/22': '141',
+        '7JUNIOTOE/24': '143',
+        '7JUNIOTOE/27': '147',
+        '7JUNIOTOE/29': '149',
+        '7JUNIOTOE/30': '150',
+        '7JUNIOTOE/31': '151',
+        '7JUNIOTOE/34': '155',
+        '7JUNIOTOE/35': '156',
+        '7JUNIOTOE/38': '159',
+        '7JUNIOTOE/42': '163',
+        '7JUNIOTOE/43': '164',
+        '7JUNIOTOE/44': '165',
+        '7JUNIOTOE/48': '170',
+        '7JUNIOTOE/49': '171',
+        '7JUNIOTOE/56': '178',
+        '7JUNIOTOE/57': '179',
+        '7JUNIOTOE/58': '183',
+        '7JUNIOTOE/63': '185',
+        '7JUNIOTOE/65': '187',
+        '7JUNIOTOE/69': '191',
+        '7JUNIOTOE/71': '202',
+        '7JUNIOTOE/81': '218',
+        '7JUNIOTOE/83': '220',
+        '7JUNIOTOE/84': '221',
+        '7JUNIOTOE/94': '231',
+        '7JUNIOTOE/95': '232',
+        '7JUNIOTOE/105': '242',
+        '7JUNIOTOE/116': '256',
+        '7JUNIOTOE/118': '258',
+        '7JUNIOTOE/126': '264',
+        '7JUNIOTOE/131': '271',
+        '7JUNIOTOE/137': '276',
+        '7JUNIOTOE/140': '280',
+        '7JUNIOTOE/153': '319',
+        '7JUNIOTOE/155': '327',
+        '7JUNIOTOE/164': '450',
+        'IHB5M/1': '34',
+        'IHB5M/2': '35',
+        'IHB5M/3': '36',
+        'IHB5M/4': '37',
+        'IHB5M/5': '38',
+        'IHB5M/6': '39',
+        'IHB5M/7': '40',
+        'IHB5M/8': '41',
+        'IHB5M/9': '42',
+        'IHB5M/10': '43',
+        'IHB5M/11': '44',
+        'IHB5M/12': '45',
+        'IHB5M/13': '46',
+        'IHB5M/14': '47',
+        'IHB5M/15': '48',
+        'IHB5M/16': '49',
+        'IHB5M/17': '50',
+        'IHB5M/18': '51',
+        'IHB5M/19': '52',
+        'IHB5M/20': '53',
+        'IHB5M/21': '54',
+        'IHB5M/22': '55',
+        'IHB5M/23': '56',
+        'IHB5M/24': '57',
+        'IHB5M/25': '58',
+        'IHB5M/26': '59',
+        'IHB5M/27': '60',
+        'IHB5M/28': '61',
+        'IHB5M/29': '62',
+        'IHB5M/30': '63',
+        'IHB5M/31': '64',
+        'IHB5M/32': '65',
+        'IHB5M/33': '66',
+        'IHB5M/34': '67',
+        'IHB5M/35': '68',
+        'IHB5M/36': '69',
+        'IHB5M/37': '70',
+        'IHB5M/38': '71',
+        'IHB5M/39': '72',
+        'IHB5M/40': '73',
+        'IHB5M/41': '74',
+        'IHB5M/42': '75',
+        'IHB5M/43': '76',
+        'IHB5M/44': '77',
+        'IHB5M/45': '78',
+        'IHB5M/46': '79',
+        'IHB5M/47': '80',
+        'IHB5M/48': '81',
+        'IHB5M/49': '82',
+        'IHB5M/50': '83',
+        'IHB5M/51': '599'}
+
+    if eventTag + '/' + str(idCertificate) in mapping:
+        return redirect(url_for('showCertificate', eventTag=eventTag, idCertificate=mapping[eventTag + '/' + str(idCertificate)]))
+
+    else:
+        return redirect(url_for('showCertificate', eventTag=eventTag, idCertificate=idCertificate))
+
+
 @app.route(listDirections['getCertificate'] + '<int:idCertificate>/', methods=['GET','POST'])
-def showtCertificate(eventTag="", idCertificate=0):
+def showCertificate(eventTag="", idCertificate=0):
     db = static.getDbConnection()
     cursor = db.cursor(dictionary=True)
 
@@ -372,22 +515,19 @@ def showtCertificate(eventTag="", idCertificate=0):
     result = cursor.fetchall()
 
     if len(result) > 0 and type(idCertificate) == type(1):
-        cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}'")
+        cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}' and register_id = "+str(idCertificate))
         values = cursor.fetchall()
 
-        if len(values) >= idCertificate:
-            return render_template(f'courses/{eventTag}/showCertified.html',
-                certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+str(idCertificate)+'.png'),
-                values=values[idCertificate - 1])
+        return render_template(f'courses/{eventTag}/showCertified.html',
+            certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+str(idCertificate)+'.png'),
+            values=values[0])
 
-        else:
-            return render_template('error.html')
     else:
         return render_template('error.html')
 
 
 
-@app.route(listDirections['getCertificate'], methods=['GET','POST'])
+@app.route(listDirections['getCertificateOLD'], methods=['GET','POST'])
 def getCertificate(eventTag=""):
     db = static.getDbConnection()
     cursor = db.cursor(dictionary=True)
@@ -406,13 +546,25 @@ def getCertificate(eventTag=""):
                         cursor.execute(f"SELECT * FROM events_register where event_id = '{eventTag}'")
                         results = cursor.fetchall()
 
-                        certifiedName = str(results.index(values[0]) + 1)
+                        #certifiedName = str(results.index(values[0]) + 1)
+                        certifiedName = str(values[0]['register_id'])
 
-                        return render_template(f'courses/{eventTag}/getCertified.html',
-                            certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+certifiedName+'.png'),
-                            values=values[0])
+                        if os.path.exists(os.path.join(current_app.root_path, 'static', 'certifieds/'+eventTag+'/'+certifiedName+'.png')):
+                            return render_template(f'courses/{eventTag}/getCertified.html',
+                                certifiedUrl=url_for('static', filename='certifieds/'+eventTag+'/'+certifiedName+'.png'),
+                                values=values[0])
 
+                        else:
+                            return str(os.path.join(current_app.root_path, 'static', 'certifieds/'+eventTag+'/'+certifiedName+'.png'))
+                            flash('E-mail Invalido', 'error')
                     else:
+                        nigga = ''
+                        for i in range(500):
+                            url = url_for('static', filename='certifieds/IHB5M/'+str(i)+'.png')
+                            nigga += '<img src="'+url+'" style="width: 50%;">'+str(i)+'<br><br><br>'
+
+                        return nigga
+
                         flash('E-mail Invalido', 'error')
                 else:
                     return render_template('error.html')

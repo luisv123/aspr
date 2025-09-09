@@ -1,6 +1,6 @@
 #               USAGE:
-#               py3 getEmail.py "select email from newsletter_register;" "luiso.txt"
-#
+#               py3 getEmail.py "select email from events_register where event_id='XXXXXXXX';" "Registros.txt"
+#               py3 getEmail.py "select email from newsletter_register;" "NewsLetter.txt"
 
 import sys
 sys.path.append('mysite/')
