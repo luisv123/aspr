@@ -1,0 +1,246 @@
+{% extends 'baseTEST.html' %}
+{% block title %}Asociación Salvadoreña de Protección Radiológica.{% endblock %}
+{% block content %}
+
+{% include 'navbar1.html' %}
+<div class="index-main-image">
+    <div class="index-main-image-effect">
+        <br><br><br>
+        <div class="container text-shadow">
+            <h1 class="text-500 d-none d-md-block">Asociación Salvadoreña<br>de Protección<br>Radiológica</h1><br><br> <!-- DESKTOP -->
+            <center>
+                <h1 class="text-300 d-sm-block d-md-none">Asociación Salvadoreña de Protección Radiológica</h1><br><br> <!-- MOBILE -->
+            </center>
+        </div>
+
+        <br><br>
+        <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path id="wavepath" d="M0,50 Q25,0 50,50 M50,50 Q75,100 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#1c4ca0"></path>
+        </svg>
+    </div>
+</div>
+<div class="index-subzone-alert">
+    <div class="container">
+        <br><br>
+        <h1 class="text-250">
+            EVENTOS QUE ORGANIZAMOS
+        </h1><br>
+
+
+    <div id="eventsCarousel" class="carousel slide cutom-carousel" data-ride="carousel">
+
+        <ul class="carousel-indicators">
+            <li data-target="#eventsCarousel" class="carousel-button active" data-slide-to="0"></li>
+            {% for i in range(eventsCarousel|length) %}
+                <li data-target="#eventsCarousel" class="carousel-button" data-slide-to="{{ i }}"></li>
+            {% endfor %}
+        </ul>
+
+        <div class="carousel-inner">
+        {% for event in eventsCarousel %}
+            <div class="carousel-item {% if eventsCarousel.index(event) == 0 %}active{% endif %}" style="min-height: 570px !important;">
+                <br><br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-4 col-sm-12">
+                        <center>
+                            <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}">
+                            <img src="{{ url_for('static', filename='events/'+event["event_id"].lower()+'.jpg') }}" style="width: 90%;border-radius: 20px 10px 10px 20px;box-shadow: -20px -20px #48bced;">
+                            </a>
+                        </center>
+                        <br class="d-none d-md-block"><br class="d-none d-md-block"><br class="d-none d-md-block">
+                    </div>
+                    <div class="col-md-4 col-sm-12"><br><br>
+                        <label class="text-200" for="carousel{{ event['event_id'] }}Event">{{ event['title'] }}</label>
+                        <br><br>
+                    {% if event['limit_date'] >= nowDate and event['active'] == 1 %}
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">¡Reserva tu Cupo Aquí!</a>
+                    {% endif %}
+                    {% if event['limit_date'] < nowDate and event['active'] == 1 %}
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;" id="carousel{{ event['event_id'] }}Event">Ver Seminario</a>
+                    {% endif %}
+                    {% if event['active'] == 2 %}
+                        <a href="{{ url_for('eventForm', eventTag=event['event_id']) }}" class="btn button d-none d-md-block" style="width: 100%;background: gray;color: white;">Cupo Lleno</a>
+                    {% endif %}
+                        <br><br><br><br>
+                    </div>
+                </div><br>
+            </div>
+        {% endfor %}
+            <div class="carousel-item" style="height: 570px !important;">
+                <center><br><br><br><br>
+                    <span class="text-300">¿Desea ver Todos los<br>Eventos que organizamos?</span>
+                    <br><br><br>
+
+                    <a href="{{ url_for('eventList') }}" class="btn button" style="width: 50%;box-shadow: 20px 20px #48bced;background: white;color: #1c4ca0;">¡Ver Todos los Eventos!</a>
+
+                    <br><br>
+                </center><br>
+            </div>
+
+        </div>
+
+
+        <a class="carousel-control-prev" href="#eventsCarousel" data-slide="prev">
+            <i class="fas fa-chevron-left d-none d-md-inline"></i>
+        </a>
+        <a class="carousel-control-next" href="#eventsCarousel" data-slide="next">
+            <i class="fas fa-chevron-right d-none d-md-inline"></i>
+        </a>
+    </div>
+
+    </div>
+
+    <br><br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: relative;">
+        <path id="wavepath" d="M0,50 Q25,100 50,50 M50,50 Q75,0 100,50 L100,50 100,100 L100,100 0,100 L0,100 0,50" fill="#FFFFFF"></path>
+    </svg>
+</div>
+<div class="index-subzone1">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <br><br><br>
+                <h1 class="text-200">
+                    MISIÓN Y VISIÓN
+                </h1>
+                <br><br>
+                <span>Nuestra labor primordial es fomentar el uso responsable y seguro de las radiaciones ionizantes en nuestro país, aprovechando así las bondades que la tecnología nuclear puede aportar al desarrollo de nuestra sociedad, minimizando posibles efectos adversos sobre las personas, el ambiente y la propiedad.</span>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <br><br><br>
+                <center>
+                    <img src="{{ url_for('static', filename='image2.jpg') }}" style="width: 80%;border-radius: 10px 40px 10px 40px;box-shadow: 20px -20px #ededed;">
+                </center>
+            </div>
+        </div><br><br><br><br>
+    </div>
+
+    <br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none" style="margin-bottom: calc(-7vw + 1px);z-index: 1;"> <!-- Placed in front -->
+        <path id="wavepath" d="M0,0 Q50,100 100,0 M100,0 L100,0 0,0" fill="#ffffff"></path>
+    </svg>
+</div>
+<div class="index-subzone2">
+    <div class="index-subzone2-gradient"></div>
+    <div class="container"><br><br><br><br>
+        <center>
+            <h1 class="text-200" style="position: relative;">
+                ¿QUIÉNES SOMOS?
+            </h1>
+            <br><br>
+            <div class="embededContainer" style="box-shadow: 0px 0px #6febff;border-radius: 20px;width: 80%;padding-bottom: 45%;">
+                <iframe src="https://www.youtube.com/embed/3oF90uZsuAY" style="background: #6febff !important;" class="embededVideo" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </center>
+    </div>
+
+    <br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none" style="margin-bottom: calc(-7vw + 1px);z-index: 1;"> <!-- Placed in front -->
+        <path id="wavepath" d="M0,100 Q50,0 100,100 L100,100 100,0 L100,0 0,0" fill="#91fff0"></path>
+    </svg>
+</div>
+<div class="index-subzone3 color-white">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-sm-12"></div>
+            <div class="col-md-6 col-sm-12">
+                <br><br><br><br><br><br>
+                <h1 class="text-200">
+                    ¡PARTICIPA EN LA ASPR!
+                </h1>
+                <br><br>
+                <span>Únete a la Asociación Salvadoreña de Protección Radiológica y forma parte de nuestra misión, ya sea como miembro activo o miembro adherente. Juntos impulsamos el uso seguro y responsable de las radiaciones en El Salvador, promoviendo la protección, la educación y el desarrollo de mejores prácticas para el bienestar de todos.</span>
+                <br><br>
+                <a href="{{ url_for('requestForm') }}" class="btn button d-none d-md-block" style="width: 100%;background: white;color: gray;">¡Haz tu Solicitud de Ingreso!</a>
+            </div>
+        </div><br><br><br><br>
+    </div>
+
+    <br><br>
+    <svg class="svg-transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavepath" d="M0,100 Q50,0 100,100 L100,100 0,100" fill="#343a40"></path>
+    </svg>
+</div>
+<div class="index-subzone4 color-white">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <img src="{{ url_for('static', filename='logo4.png') }}" style="max-width: 200px;">
+                <br><br>
+                <h1 class="text-150">¡Regístrese a nuestro Boletín Informativo!</h1><br>
+                <span>
+                    Recibirá periódicamente correos electrónicos con información sobre noticias relevantes y próximos eventos. Nuestro objetivo es mantenerle actualizado con contenido valioso y oportuno.
+                </span><br><br><br>
+                <center>
+                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="{{ url_for('newsletterRegister') }}">Registrarse</a>
+                </center>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <br>
+                <center>
+                    <a class="btn button" style="width: 75%;background: white;color: gray;" href="javascript:void(0);" data-toggle="modal" data-target="#cpEmail"><i class="fas fa-envelope"></i> E-mail de Contacto</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #f52b46;color: white;" href="https://www.youtube.com/channel/UCQZot1gIOwz2IPzkc-TGRzw" target="_blank"><i class="fab fa-youtube"></i> Canal de YouTube</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #48b964;color: white;" href="https://whatsapp.com/channel/0029Vb65sbA1dAvzZBsfUZ2g" target="_blank"><i class="fab fa-whatsapp"></i> Canal de WhatsApp</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: #194ba0;color: white;" href="https://www.facebook.com/people/Asociaci%C3%B3n-Salvadore%C3%B1a-de-Protecci%C3%B3n-Radiol%C3%B3gica/61575758426471/" target="_blank"><i class="fab fa-facebook"></i> Página de Facebook</a>
+                    <br><br>
+                    <a class="btn button" style="width: 75%;background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);color: white;" href="https://www.instagram.com/asprelsalvador/" target="_blank"><i class="fab fa-instagram"></i> Cuenta de Instagram</a>
+                </center>
+            </div>
+        </div>
+        <br><br>
+    </div>
+    <marquee behavior="scroll" direction="left" scrollamount="5" scrolldelay="0" class="text-125">
+        ¡Síguenos en nuestras redes sociales para mantenerte conectado y no perderte ningún evento, curso o novedad!
+    </marquee><br><br>
+</div>
+
+<!-- Modal to Copy E-mail -->
+
+<div class="modal fade" id="cpEmail">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 100px;box-shadow: 5px 5px 20px rgba(1,1,1,0.25);">
+            <div class="modal-body">
+
+                <center>
+                    <span   id="cpEmailLabel">asprelsalvador@gmail.com</span>
+                    <button id="cpEmailButton" class="btn button" style="background: #1c4ca0;color: white;margin-left: 10px;" title="Copiar E-mail de Contacto" onclick="cpEmail()"><i class="fas fa-clone"></i></button>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function cpEmail() {
+    const email = "asprelsalvador@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+        document.getElementById('cpEmailLabel').textContent = '¡E-mail Copiado!'
+        document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-check"></i>'
+    }).catch(err => {
+        document.getElementById('cpEmailLabel').textContent = 'Error al copiar el E-mail'
+        document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-times"></i>'
+    });
+
+    setTimeout(() => {
+        $('#cpEmail').modal('hide');
+
+        setTimeout(() => {
+            document.getElementById('cpEmailLabel').textContent = email
+            document.getElementById('cpEmailButton').innerHTML = '<i class="fas fa-clone"></i>'
+        }, 1000)
+    }, 3000)
+
+}
+
+
+</script>
+
+{% endblock %}

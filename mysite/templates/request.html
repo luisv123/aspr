@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% block title %}Solicitud de Ingreso{% endblock %}
+{% block body_style %}background: linear-gradient(to right, #1c4ca0, #48bced);{% endblock %}
+
+{% block content %}
+
+{% include 'navbar1.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-2"></div>
+        <div class="col-sm-12 col-md-8">
+            <br><br><br>
+            <div class="panel" style="min-height: 500px;height: calc(100% - 72px);overflow-y: scroll;overflow-x: hidden;position: relative;padding: 50px;display: flex;align-items: center;">
+                <div id="contentForm">
+                    <center><br><br>
+                        <span class="text-150">Asociación Salvadoreña de Protección Radiólogica<br>Solicitud de ingreso</span>
+                    </center><br><br>
+                    <form action="{{ url_for('requestForm') }}" method="POST">
+
+                        <span style="font-size: 125%;">
+
+                        Yo: <input type="text" class="form-control input" placeholder="Nombre y Apellido *" name="name" id="nameForm" oninput="this.style.boxShadow = ''" style="display: inline; width: 50%;margin-left: 15px;margin-right: 15px;height: 35px;">
+                        (nombre según DUI) mayor de edad, con Documento Único de Identidad <br>N.º:
+                        <input type="text" class="form-control input" placeholder="Documento Único de Identidad *" name="document" id="documentForm" oninput="this.style.boxShadow = ''" style="display: inline; width: 50%;margin-left: 15px;margin-right: 15px;height: 35px;">
+                        SOLICITO ingreso como asociado,<br><br>
+
+                        ACTIVO:<input type="radio" name="associate" value="active" style="margin-left: 15px;margin-right: 15px;transform: scale(1.15);" checked>
+                        o ADHERENTE:<input type="radio" name="associate" value="adherent" style="margin-left: 15px;margin-right: 15px;transform: scale(1.15);"><br><br>
+
+                        de la ASOCIACIÓN SALVADOREÑA DE PROTECCION RADIOLOGICA (ASPR). Con este fin proporciono la siguiente información requerida:
+
+                        </span><br><br>
+
+                        <input type="text" class="form-control input" placeholder="Profesión (según título adjunto) *" name="profession" id="professionForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Dirección *" name="adress" id="adressForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Teléfono casa *" name="homePhone" id="homePhoneForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Celular *" name="phone" id="phoneForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Teléfono de Trabajo *" name="workPhone" id="workPhoneForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <select name="country" class="form-control input" style="padding: 0px;padding-left: 20px;" id="countryForm" oninput="this.style.boxShadow = ''">
+                            <option value="">País *</option>
+                            {% include 'countrysNumberless.html' %}
+                        </select><br>
+
+                        <input type="text" class="form-control input" placeholder="E-mail *" name="email" id="emailForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Lugar de Trabajo *" name="workPlace" id="workPlaceForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Cargo que Desempeña" name="jobTitle" id="jobTitleForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Número de inscripción de junta" name="boardNumber" id="boardNumberForm" oninput="this.style.boxShadow = ''"><br>
+
+                        <input type="text" class="form-control input" placeholder="Miembro que lo recomienda" name="referringMember" id="referringMemberForm" oninput="this.style.boxShadow = ''"><br>
+
+
+                        <span>
+
+                        Por este medio, declaro que:<br>
+                        <input type="checkBox" name="commitment1" style="margin-left: 0px;margin-right: 15px;transform: scale(1.15);">
+                        Reúno todas las condiciones requeridas en los Estatutos, por los que se rige la
+                        asociación.<br>
+                        <input type="checkBox" name="commitment2" style="margin-left: 0px;margin-right: 15px;transform: scale(1.15);">
+                        Todos los documentos y datos facilitados son verdaderos, por lo que autorizo a
+                        ASPR; pare que los verifique, si así lo estima conveniente.<br><br>
+
+                        Y me comprometo a:<br>
+                        <input type="checkBox" name="commitment3" style="margin-left: 0px;margin-right: 15px;transform: scale(1.15);">
+                        Cumplir las obligaciones que me imponen los Estatutos, así como los acuerdos
+                        y resoluciones adoptados por la Asamblea general de la Junta Directiva.<br>
+                        <input type="checkBox" name="commitment4" style="margin-left: 0px;margin-right: 15px;transform: scale(1.15);">
+                        Cancelar mensualmente la cuota y aportaciones extraordinarias que acuerde la
+                        Asamblea General.<br>
+
+                        </span><br><br>
+
+                        <button class="btn button" type="button" style="width: 100%;background: #1c4ca0;color: white;" onclick="checkValues()">Enviar Solicitud</button>
+                        <button type="button" style="display: none;" id="submitButton"></button>
+                        <br><br>
+                        <center>
+                            <span class="text-danger" id="errorMessage">
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                        {% if category == 'error' %}
+                                            <i class='fal fa-times'></i> {{ message }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </span>
+                        </center>
+                        <br>
+                        <span style="color: gray;">
+                        Ante cualquier duda o inconveniente al completar el formulario, estamos disponibles en nuestro correo electrónico para atenderle y responder sus inquietudes.
+                        <br><br>
+                        asprelsalvador@gmail.com
+                        </span>
+                    </form>
+                </div>
+                <div id="contentFormRegistered" style="width: 100%;display: none;">
+                    <center><br><br>
+                        <span class="text-150">Solicitud de ingreso enviada exitosamente.</span><br><br>
+                        <i class="fal fa-check-circle text-success" style="font-size: 250%;"></i>
+                    </center><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+
+
+<script>
+    const name = document.getElementById('nameForm');
+    const documentForm = document.getElementById('documentForm');
+    const associate = document.getElementsByName('associate')[0];
+    const profession = document.getElementById('professionForm');
+    const adress = document.getElementById('adressForm');
+    const homePhone = document.getElementById('homePhoneForm');
+    const phone = document.getElementById('phoneForm');
+    const workPhone = document.getElementById('workPhoneForm');
+    const country = document.getElementById('countryForm');
+    const email = document.getElementById('emailForm');
+    const workPlace = document.getElementById('workPlaceForm');
+    const jobTitle = document.getElementById('jobTitleForm');
+    const boardNumber = document.getElementById('boardNumberForm');
+    const referringMember = document.getElementById('referringMemberForm');
+    const commitment1 = document.getElementsByName('commitment1')[0];
+    const commitment2 = document.getElementsByName('commitment2')[0];
+    const commitment3 = document.getElementsByName('commitment3')[0];
+    const commitment4 = document.getElementsByName('commitment4')[0];
+
+    commitment1.checked = false;
+    commitment2.checked = false;
+    commitment3.checked = false;
+    commitment4.checked = false;
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'registered' %}
+                {% if message == 'true' %}
+
+    // Showing the success message
+    document.getElementById('contentForm').style.display = "none";
+    document.getElementById('contentFormRegistered').style.display = "block";
+
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    function checkValues(){
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        name.style.boxShadow = "";
+        documentForm.style.boxShadow = "";
+        associate.style.boxShadow = "";
+        profession.style.boxShadow = "";
+        adress.style.boxShadow = "";
+        homePhone.style.boxShadow = "";
+        phone.style.boxShadow = "";
+        workPhone.style.boxShadow = "";
+        country.style.boxShadow = "";
+        email.style.boxShadow = "";
+        workPlace.style.boxShadow = "";
+        jobTitle.style.boxShadow = "";
+        boardNumber.style.boxShadow = "";
+        referringMember.style.boxShadow = "";
+        commitment1.style.boxShadow = "";
+        commitment2.style.boxShadow = "";
+        commitment3.style.boxShadow = "";
+        commitment4.style.boxShadow = "";
+
+        error = document.getElementById('errorMessage');
+        submitButton = document.getElementById('submitButton');
+
+        if (  name.value.trim() == "" ||
+              documentForm.value.trim() == "" ||
+              associate.value.trim() == "" ||
+              profession.value.trim() == "" ||
+              adress.value.trim() == "" ||
+              homePhone.value.trim() == "" ||
+              phone.value.trim() == "" ||
+              workPhone.value.trim() == "" ||
+              country.value.trim() == "" ||
+              email.value.trim() == "" ||
+              workPlace.value.trim() == "") { // Checking there's no blank fields
+
+            error.innerHTML = "<i class='fal fa-times'></i> Hay Campos Vacíos";
+
+            if (name.value.trim() == "") {
+                name.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (documentForm.value.trim() == "") {
+                documentForm.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (profession.value.trim() == "") {
+                profession.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (adress.value.trim() == "") {
+                adress.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (homePhone.value.trim() == "") {
+                homePhone.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (phone.value.trim() == "") {
+                phone.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (workPhone.value.trim() == "") {
+                workPhone.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (country.value.trim() == "") {
+                country.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (email.value.trim() == "") {
+                email.style.boxShadow = "3px 3px #ec4d44";
+            }
+            if (workPlace.value.trim() == "") {
+                workPlace.style.boxShadow = "3px 3px #ec4d44";
+            }
+
+
+        }else {
+            if(emailPattern.test(email.value) == false){
+                error.innerHTML = "<i class='fal fa-times'></i> El E-mail no es Válido";
+                email.style.boxShadow = "3px 3px #ec4d44";
+
+            }else{
+                if(commitment1.checked == false || commitment2.checked == false || commitment3.checked == false || commitment4.checked == false) {
+                    error.innerHTML = "<i class='fal fa-times'></i> Faltan términos por aceptar";
+
+                } else {
+                    error.innerHTML = "";
+                    submitButton.type = "submit";
+                    submitButton.click();
+
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}

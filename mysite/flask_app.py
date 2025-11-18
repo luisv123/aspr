@@ -60,7 +60,8 @@ listDirections = {
         'eventList': '/eventos/',
         'getCertificateOLD': '/cursos/<eventTag>/certificado/',
         'getCertificate': '/cursos/<eventTag>/',
-        'printXlsx': '/reports'
+        'printXlsx': '/reports', # What about this one?
+        'requestForm': '/solicitud/'
     }
 
    ##################################################################
@@ -104,7 +105,7 @@ def test(password=""):
         return render_template('statistics.html', listEvents=listEvents, listRegisters=listRegisters, fieldsShow=fieldsShow, cantRegisters=cantRegisters)
 
     else:
-        return render_template('events/5julio.html')
+        return render_template('indexTEST.html')
 
 
    ##################################################################
@@ -212,6 +213,61 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
+
+   ##################################################################
+    #   SOLICITUD INGRESO                                          #
+   ##################################################################
+
+@app.route(listDirections['requestForm'], methods=['GET','POST'])
+def requestForm():
+    db = static.getDbConnection()
+    cursor = db.cursor()
+    if request.method == 'POST':
+
+        requiredFields = [
+        'name', 'document', 'associate', 'profession', 'adress',
+        'homePhone', 'phone', 'workPhone', 'email', 'workPlace']
+
+        if all(field in request.form for field in requiredFields):
+            if all(field.strip() != '' for field in requiredFields):
+
+                cursor.execute("SELECT count(*) FROM request_register WHERE email = '"+request.form['email'].strip()+"'")
+                results = cursor.fetchall()
+
+                if results[0][0] == 0:
+                    insertInto(cursor, 'request_register', {
+                            'name': request.form['name'].strip(),
+                            'document': request.form['document'].strip(),
+                            'associate': request.form['associate'].strip(),
+                            'profession': request.form['profession'].strip(),
+                            'adress': request.form['adress'].strip(),
+                            'home_phone': request.form['homePhone'].strip(),
+                            'phone': request.form['phone'].strip(),
+                            'work_phone': request.form['workPhone'].strip(),
+                            'email': request.form['email'].strip(),
+                            'country': request.form['country'].strip(),
+                            'work_place': request.form['workPlace'].strip(),
+                            'job_title': request.form['jobTitle'].strip(),
+                            'board_number': request.form['boardNumber'].strip(),
+                            'referring_member': request.form['referringMember'].strip()
+                        })
+
+                    db.commit()
+
+                    flash('true','registered')
+
+                else:
+                    flash('E-mail ya Registrado', 'error')
+
+            else:
+                flash('Hay Campos Vacíos1', 'error')
+
+        else:
+            flash('Hay Campos Vacíos2', 'error')
+
+    return render_template('request.html')
 
 
 
